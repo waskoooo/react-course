@@ -1,8 +1,12 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { Chatbot } from 'supersimpledev';
 import './App.css'
 
+
+
+// eslint-disable-next-line react/prop-types
 function ChatInput({ chatMessages, setChatMessages }) {
-        const [inputText, setInputText] = React.useState('');
+        const [inputText, setInputText] = useState('');
 
         function saveInputText(event) {
           setInputText(event.target.value);
@@ -50,6 +54,7 @@ function ChatInput({ chatMessages, setChatMessages }) {
         );
       }
 
+      // eslint-disable-next-line react/prop-types
       function ChatMessage({ message, sender }) {
         // const message = props.message;
         // const sender = props.sender;
@@ -86,10 +91,11 @@ function ChatInput({ chatMessages, setChatMessages }) {
         );
       }
 
+      // eslint-disable-next-line react/prop-types
       function ChatMessages({ chatMessages }) {
-        const chatMessagesRef = React.useRef(null);
+        const chatMessagesRef = useRef(null);
 
-        React.useEffect(() => {
+        useEffect(() => {
           const containerElem = chatMessagesRef.current;
           if (containerElem) {
             containerElem.scrollTop = containerElem.scrollHeight;
@@ -97,8 +103,8 @@ function ChatInput({ chatMessages, setChatMessages }) {
         }, [chatMessages]);
 
         return (
-          <div className="chat-messages-container"
-          ref={chatMessagesRef}>
+          <div className="chat-messages-container" ref={chatMessagesRef}>
+            {/* eslint-disable-next-line react/prop-types */}
             {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage
